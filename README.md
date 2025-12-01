@@ -35,7 +35,7 @@ You can use [Docker](https://docs.docker.com/) to run your local test environmen
 
 ```
 cd $HOME
-git clone https://github.com/amidevous/copr.git
+git clone https://github.com/amidevous1/copr.git
 cd copr
 sudo docker compose up -d
 sudo sudo docker exec -it copr-frontend-1 bash /usr/bin/init-database.sh
