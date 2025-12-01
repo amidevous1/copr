@@ -34,9 +34,39 @@ python-copr-common | [![badge](https://copr.fedorainfracloud.org/coprs/g/copr/co
 You can use [Docker](https://docs.docker.com/) to run your local test environment. You need to install `docker-compose` tool for this to work.
 
 ```
-git clone https://github.com/fedora-copr/copr.git
+cd $HOME
+git clone https://github.com/amidevous/copr.git
 cd copr
-docker-compose up -d
+sudo docker compose up -d
+sudo sudo docker exec -it copr-frontend-1 bash /usr/bin/init-database.sh
+```
+
+uninstall and purge
+
+```
+cd $HOME/copr
+sudo docker compose stop
+sudo docker compose rm
+sudo docker stop $(sudo docker ps -a -q) 
+sudo docker rm $(sudo docker ps -a -q)
+sudo docker rmi $(sudo docker images -a -q)
+sudo docker rm $(sudo docker ps -a -f status=exited -q)
+sudo docker rm $(sudo docker ps -a -f status=exited -f status=created -q)
+sudo docker stop $(sudo docker ps -a -q) 
+sudo docker rm $(sudo docker ps -a -q)
+sudo docker rmi $(sudo docker images -a -q)
+sudo docker rm $(sudo docker ps -a -f status=exited -q)
+sudo docker rm $(sudo docker ps -a -f status=exited -f status=created -q)
+sudo docker stop $(sudo docker ps -a -q) 
+sudo docker rm $(sudo docker ps -a -q)
+sudo docker rmi $(sudo docker images -a -q)
+sudo docker rm $(sudo docker ps -a -f status=exited -q)
+sudo docker rm $(sudo docker ps -a -f status=exited -f status=created -q)
+sudo docker image prune -a -f
+sudo docker system prune -a -f
+sudo docker volume prune -a -f
+cd $HOME
+rm -rf copr
 ```
 
 For more information see [our wiki page](https://docs.pagure.org/copr.copr/contribute.html?highlight=contribute).
