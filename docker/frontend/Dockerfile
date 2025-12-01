@@ -20,6 +20,7 @@ RUN set -ex ; \
                    wget \
                    vim \
                    yum \
+                   nano \
                    sudo \
                    python3-alembic \
                    python3-anytree \
@@ -31,6 +32,21 @@ RUN set -ex ; \
                    modulemd-tools \
                    python3-authlib \
     && dnf clean all
+
+
+RUN dnf -y install mock-core-configs
+RUN cp /etc/mock/eol/epel-6-i386.cfg /etc/mock/epel-6-i386.cfg
+RUN cp /etc/mock/eol/epel-6-x86_64.cfg /etc/mock/epel-6-x86_64.cfg
+RUN cp /etc/mock/eol/epel-7-x86_64.cfg /etc/mock/epel-7-x86_64.cfg
+RUN cp /etc/mock/alma+epel-8-x86_64.cfg /etc/mock/epel-8-x86_64.cfg
+RUN cp /etc/mock/alma+epel-9-x86_64.cfg /etc/mock/epel-9-x86_64.cfg
+RUN dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
+RUN dnf -y install mock-rpmfusion-free mock-rpmfusion-nonfree
+RUN dnf clean all 
+
+
+
+
 
 COPY files/ /
 
