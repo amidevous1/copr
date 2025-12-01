@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:42
+FROM registry.fedoraproject.org/fedora:43
 MAINTAINER copr-devel@lists.fedorahosted.org
 
 ARG ADDITIONAL_COPR_REPOSITORIES="@copr/copr-dev"
@@ -44,7 +44,7 @@ RUN cp /etc/mock/eol/epel-6-x86_64.cfg /etc/mock/epel-6-x86_64.cfg
 RUN cp /etc/mock/eol/epel-7-x86_64.cfg /etc/mock/epel-7-x86_64.cfg
 RUN cp /etc/mock/alma+epel-8-x86_64.cfg /etc/mock/epel-8-x86_64.cfg
 RUN cp /etc/mock/alma+epel-9-x86_64.cfg /etc/mock/epel-9-x86_64.cfg
-RUN dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-42.noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-42.noarch.rpm
+RUN dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
 RUN dnf -y install mock-rpmfusion-free mock-rpmfusion-nonfree
 RUN dnf clean all 
 
