@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:43
+FROM registry.fedoraproject.org/fedora:42
 MAINTAINER copr-devel@lists.fedorahosted.org
 
 ARG ADDITIONAL_COPR_REPOSITORIES="@copr/copr-dev"
@@ -37,6 +37,16 @@ RUN set -ex ; \
                    expect \
     && dnf -y install copr-backend \
     && dnf clean all
+
+RUN dnf -y install mock-core-configs
+RUN cp /etc/mock/eol/epel-6-i386.cfg /etc/mock/epel-6-i386.cfg
+RUN cp /etc/mock/eol/epel-6-x86_64.cfg /etc/mock/epel-6-x86_64.cfg
+RUN cp /etc/mock/eol/epel-7-x86_64.cfg /etc/mock/epel-7-x86_64.cfg
+RUN cp /etc/mock/alma+epel-8-x86_64.cfg /etc/mock/epel-8-x86_64.cfg
+RUN cp /etc/mock/alma+epel-9-x86_64.cfg /etc/mock/epel-9-x86_64.cfg
+RUN dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-42.noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-42.noarch.rpm
+RUN dnf -y install mock-rpmfusion-free mock-rpmfusion-nonfree
+RUN dnf clean all 
 
 # needed to be able to ping
 RUN setcap cap_net_raw,cap_net_admin+p /usr/bin/ping
